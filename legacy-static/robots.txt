@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sellerguide.pages.dev/sitemap.xml
