@@ -106,63 +106,17 @@ export function ChecklistPage() {
   }
 
   const requiredDocsInfo = [
-    {
-      icon: '📄',
-      label: '대표자 신분증',
-      note: '주민등록증 또는 운전면허증',
-      always: true,
-    },
-    {
-      icon: '🤝',
-      label: '동업계약서',
-      note: '공동사업자 필수',
-      always: false,
-      condition: type === 'joint',
-    },
-    {
-      icon: '🏢',
-      label: '임대차계약서',
-      note: '임대 사업장이 있는 경우',
-      always: false,
-      condition: hasLeasedWorkplace,
-    },
-    {
-      icon: '👥',
-      label: '공동대표자 신분증',
-      note: '공동사업자 필수',
-      always: false,
-      condition: type === 'joint',
-    },
-    {
-      icon: '🔐',
-      label: '홈택스 공동인증서',
-      note: '홈택스 로그인용',
-      always: true,
-    },
+    { label: '대표자 신분증', note: '주민등록증 또는 운전면허증', always: true },
+    { label: '공동대표자 신분증', note: '공동사업자 필수', always: false, condition: type === 'joint' },
+    { label: '동업계약서', note: '공동사업자 필수', always: false, condition: type === 'joint' },
+    { label: '임대차계약서', note: '임대 사업장이 있는 경우', always: false, condition: hasLeasedWorkplace },
+    { label: '홈택스 공동인증서', note: '홈택스 로그인용', always: true },
   ].filter((doc) => doc.always || doc.condition)
 
   return (
     <section className="checklist-screen" aria-label="사업자등록 가이드">
       <div className="smartstore-shell">
         <main className="smartstore-main">
-          <div className="required-docs-banner">
-            <div className="required-docs-banner-header">
-              <span className="required-docs-banner-icon">📋</span>
-              <div>
-                <strong>사업자등록 전 미리 준비하세요</strong>
-                <span>아래 서류를 먼저 갖추면 홈택스 신청 중 막히지 않습니다.</span>
-              </div>
-            </div>
-            <ul className="required-docs-list">
-              {requiredDocsInfo.map((doc) => (
-                <li key={doc.label} className="required-docs-item">
-                  <span className="required-docs-item-icon">{doc.icon}</span>
-                  <span className="required-docs-item-label">{doc.label}</span>
-                  <span className="required-docs-item-note">{doc.note}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
           <div className="phase-overview" aria-label="전체 진행 단계">
             <div className="phase-card active registration-phase-card">
               <span className="registration-phase-state">1단계 진행 중</span>
@@ -207,6 +161,17 @@ export function ChecklistPage() {
                 공동사업자
               </button>
             </div>
+          </div>
+          <div className="required-docs-banner">
+            <p className="required-docs-banner-title">신청 전 준비할 서류</p>
+            <ul className="required-docs-list">
+              {requiredDocsInfo.map((doc) => (
+                <li key={doc.label} className="required-docs-item">
+                  <span className="required-docs-item-label">{doc.label}</span>
+                  <span className="required-docs-item-note">{doc.note}</span>
+                </li>
+              ))}
+            </ul>
           </div>
           <SequentialProcedure steps={steps} className="checklist-steps-container" onAllComplete={handleComplete} />
           <div className="smartstore-complete-action checklist-complete-action">
