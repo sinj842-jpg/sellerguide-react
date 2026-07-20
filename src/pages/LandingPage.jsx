@@ -47,7 +47,7 @@ export function LandingPage() {
                 <rect x="6" y="5" width="12" height="16" rx="2" />
                 <path d="M9 11.5 11 13.5 15 9.5" />
               </svg>
-              행정절차 시작하기 <span>›</span>
+              사업자등록 시작하기 <span>›</span>
             </button>
             <button className="hero-sub-btn" onClick={goAiPage}>
               <svg className="hero-btn-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -120,7 +120,7 @@ export function LandingPage() {
                   <path d="M9 11.5 11 13.5 15 9.5" />
                 </svg>
               </span>
-              행정절차 도움
+              사업자등록 도움
             </div>
             <div className="demo-progress-box">
               <p>전체 진행률</p>

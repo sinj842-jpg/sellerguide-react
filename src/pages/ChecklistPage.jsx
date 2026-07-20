@@ -12,16 +12,11 @@ export function ChecklistPage() {
   const params = useParams()
   const type = params.type === 'joint' ? 'joint' : 'individual'
   const navigate = useNavigate()
-  const { onboarding, setOnboardingField } = useAppState()
+  const { onboarding } = useAppState()
 
   const config = activeChecklistConfig(type, onboarding)
   const hasLeasedWorkplace = onboarding.workplaceLease === 'leased'
   const hasNoLeasedWorkplace = onboarding.workplaceLease === 'not_leased'
-
-  function switchType(nextType) {
-    setOnboardingField('businessType', nextType === 'joint' ? 'joint' : 'personal')
-    navigate(`/checklist/${nextType}`)
-  }
 
   const steps = config.steps.map((step, index) => {
     const isRegistrationApplyStep = step.title === '사업자등록 신청'
@@ -148,18 +143,6 @@ export function ChecklistPage() {
               <span className="check-kicker">1단계</span>
               <h1 className="check-title">{config.label} 사업자등록</h1>
               <p className="check-desc">{config.desc}</p>
-            </div>
-            <div className="check-type-switch" aria-label="사업자등록 유형 전환">
-              <button
-                type="button"
-                className={type === 'individual' ? 'active' : ''}
-                onClick={() => switchType('individual')}
-              >
-                개인사업자
-              </button>
-              <button type="button" className={type === 'joint' ? 'active' : ''} onClick={() => switchType('joint')}>
-                공동사업자
-              </button>
             </div>
           </div>
           <div className="required-docs-banner">
