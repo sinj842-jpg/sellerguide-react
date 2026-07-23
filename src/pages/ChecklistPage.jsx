@@ -25,15 +25,9 @@ export function ChecklistPage() {
 
     let content
     if (isRegistrationApplyStep) {
-      const requiredDocs = [...(type === 'joint' ? ['동업계약서'] : []), ...(hasLeasedWorkplace ? ['임대차계약서'] : [])]
       content = (
         <>
           <div className="smartstore-guide-block">
-            {requiredDocs.length > 0 && (
-              <div className="smartstore-note">
-                <strong>필수서류</strong> {requiredDocs.join(', ')}
-              </div>
-            )}
             <div className="smartstore-guide-shot">
               <img src="/assets/guide/hometax-home.png" alt="홈택스 통신판매업 간편 사업자등록 신청 메뉴 화면" />
             </div>

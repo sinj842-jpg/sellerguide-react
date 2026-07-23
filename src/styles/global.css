@@ -1075,7 +1075,8 @@
       box-shadow: 0 5px 16px rgba(31, 62, 82, .08);
     }
 
-    .hometax-link-card {
+    .hometax-link-card,
+    .external-link-card {
       margin: 16px 0 4px;
       border: 1px solid #cfece4;
       border-radius: 10px;
@@ -1087,20 +1088,23 @@
       align-items: center;
     }
 
-    .hometax-link-card strong {
+    .hometax-link-card strong,
+    .external-link-card strong {
       display: block;
       color: #142437;
       margin-bottom: 4px;
       font-size: 15px;
     }
 
-    .hometax-link-card span {
+    .hometax-link-card span,
+    .external-link-card span {
       color: #617383;
       font-size: 13px;
       font-weight: 700;
     }
 
-    .hometax-link-card a {
+    .hometax-link-card a,
+    .external-link-card a {
       min-height: 42px;
       border-radius: 8px;
       background: var(--teal);
@@ -2296,6 +2300,31 @@
       color: #142437;
       font-weight: 900;
       line-height: 1.65;
+    }
+
+    .smartstore-note strong {
+      display: block;
+      color: var(--teal);
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .smartstore-note p {
+      margin: 0;
+    }
+
+    .smartstore-note p + p {
+      margin-top: 8px;
+    }
+
+    .smartstore-note.highlight {
+      border-color: rgba(208, 90, 42, .35);
+      border-left-color: #d05a2a;
+      background: #fdf2ec;
+    }
+
+    .smartstore-note.highlight strong {
+      color: #d05a2a;
     }
 
     .smartstore-check-grid {
@@ -4370,11 +4399,13 @@
         grid-template-columns: 1fr;
       }
 
-      .hometax-link-card {
+      .hometax-link-card,
+      .external-link-card {
         display: grid;
       }
 
-      .hometax-link-card a {
+      .hometax-link-card a,
+      .external-link-card a {
         width: 100%;
       }
 

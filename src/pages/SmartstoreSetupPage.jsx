@@ -122,6 +122,17 @@ const steps = [
           개인사업자는 1인 대표를, 공동사업자는 공동대표를 선택하면 됩니다. 꼭 &quot;대표자 명의 휴대전화 인증&quot;으로 진행해
           주세요. 공동사업자의 경우 공동대표의 인증도 함께 진행하면 됩니다.
         </div>
+        <div className="smartstore-note highlight">
+          <strong>대표자 명의 휴대전화 인증이 편리한 이유</strong>
+          <p>
+            휴대전화 인증 대신 다른 방법을 선택하면 인감증명서를 발급받아 별도로 제출해야 합니다. 인감증명서는 주민센터를
+            방문해 발급받아야 해서 시간이 걸립니다.
+          </p>
+          <p>
+            반면 대표자 명의 휴대전화 인증은 본인 명의 휴대폰만 있으면 그 자리에서 바로 인증이 끝나, 서류 발급이나 방문 없이
+            가입을 빠르게 마칠 수 있습니다.
+          </p>
+        </div>
         <ul>
           <li>개인사업자는 1인 대표를 선택합니다.</li>
           <li>공동사업자는 공동대표를 선택합니다.</li>
@@ -145,9 +156,12 @@ const steps = [
         <div className="smartstore-guide-shot">
           <img src="/assets/guide/smartstore-info-input.png" alt="스마트스토어 정보 입력 화면" />
         </div>
+        <div className="smartstore-note highlight">
+          <strong>스토어 이름은 가입 후 1회만 수정할 수 있어요</strong>
+          <p>한번 정하면 되돌리기 어려우니, 브랜드·상품과 잘 어울리는 이름인지 신중하게 확인한 뒤 입력해 주세요.</p>
+        </div>
         <ul>
           <li>스마트스토어 이름과 URL을 입력합니다.</li>
-          <li>스토어 이름은 가입 후 1회만 수정할 수 있으므로 신중하게 정합니다.</li>
           <li>스토어 소개, 대표 카테고리, 고객센터 정보를 입력합니다.</li>
         </ul>
       </div>
