@@ -1,5 +1,43 @@
 import { useState } from 'react'
 
+export function GuideSubAccordion({ criteriaGuide }) {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div className={`guide-sub-accordion${open ? ' open' : ''}`}>
+      <button className="guide-sub-trigger" type="button" onClick={() => setOpen((prev) => !prev)}>
+        <span>{criteriaGuide.title}</span>
+        <i>{open ? '⌃' : '⌄'}</i>
+      </button>
+      {open && (
+        <div className="guide-sub-content">
+          <p className="guide-sub-intro">{criteriaGuide.intro}</p>
+          <div className="guide-type-examples">
+            {criteriaGuide.examples.map((item) => (
+              <div className="guide-type-card" key={item.type}>
+                <strong>{item.type}</strong>
+                <span className="guide-type-criteria">{item.criteria}</span>
+                <span className="guide-type-example">예시: {item.example}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export function GuideNoteBox({ note }) {
+  return (
+    <div className="guide-note-box">
+      <strong>{note.title}</strong>
+      {note.body.map((line, index) => (
+        <p key={index}>{line}</p>
+      ))}
+    </div>
+  )
+}
+
 export function GuideAccordion({ items }) {
   const [openIndexes, setOpenIndexes] = useState(() => new Set([0]))
 
@@ -39,6 +77,8 @@ export function GuideAccordion({ items }) {
                 </div>
                 <div className="guide-sequence-copy">
                   <p>{guide.body}</p>
+                  {guide.criteriaGuide && <GuideSubAccordion criteriaGuide={guide.criteriaGuide} />}
+                  {guide.note && <GuideNoteBox note={guide.note} />}
                 </div>
               </div>
             </div>

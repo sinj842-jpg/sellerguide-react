@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppState } from '../context/AppStateContext'
 import { useToast } from '../context/ToastContext'
@@ -17,18 +17,50 @@ const registrationChoices = [
 ]
 
 const workplaceChoices = [
-  { value: 'leased', icon: '임대', title: '네, 임대 사업장이 있어요', desc: '홈택스 신청 시 임대차 내역을 입력하고 임대차계약서를 준비합니다.' },
-  { value: 'not_leased', icon: '없음', title: '아니요, 임대 사업장은 없어요', desc: '자택, 본인 소유 공간, 임대차 내역이 없는 경우에 해당합니다.' },
+  {
+    value: 'leased',
+    icon: '임대',
+    title: '네, 빌린 공간을 사용해요',
+    desc: [
+      '사무실·상가·공유오피스 또는 전·월세로 거주 중인 자택을 사업장 주소로 사용한다면 선택하세요.',
+      '홈택스 신청 시 임대차 정보를 입력하고 임대차계약서를 제출해야 합니다.',
+    ],
+  },
+  {
+    value: 'not_leased',
+    icon: '없음',
+    title: '아니요, 빌린 공간이 아니에요',
+    desc: [
+      '본인이 소유한 자택이나 사무실을 사업장 주소로 사용한다면 선택하세요.',
+      '임대차 정보와 임대차계약서는 필요하지 않습니다.',
+    ],
+  },
 ]
 
+function ChoiceDesc({ desc }) {
+  if (!Array.isArray(desc)) return desc
+  return desc.map((line, index) => (
+    <Fragment key={index}>
+      {index > 0 && <br />}
+      {line}
+    </Fragment>
+  ))
+}
+
 const platformChoices = [
-  { value: 'smartstore', icon: 'N', label: '스마트스토어' },
-  { value: 'coupang', icon: 'C', label: '쿠팡' },
-  { value: 'openmarket', icon: '11', label: '11번가G마켓' },
+  { value: 'smartstore', icon: 'N', label: '스마트스토어', logo: '/assets/platforms/smartstore.png' },
+  { value: 'coupang', icon: 'C', label: '쿠팡', logo: '/assets/platforms/coupang.png' },
+  { value: 'openmarket', icon: '11', label: '11번가G마켓', logo: '/assets/platforms/openmarket.png' },
   { value: 'own_mall', icon: '몰', label: '자사몰' },
   { value: 'other', icon: '기타', label: '기타' },
   { value: 'undecided', icon: '...', label: '아직 결정하지 않았어요' },
 ]
+
+function PlatformIcon({ logo, icon, label }) {
+  const [failed, setFailed] = useState(false)
+  if (!logo || failed) return <i>{icon}</i>
+  return <img className="platform-logo" src={logo} alt={label} onError={() => setFailed(true)} />
+}
 
 export function ReadinessPage() {
   const { onboarding, setOnboardingField, setPlatforms } = useAppState()
@@ -212,7 +244,9 @@ export function ReadinessPage() {
                   <i>{choice.icon}</i>
                   <span className="choice-copy">
                     <span className="choice-title">{choice.title}</span>
-                    <span className="choice-desc">{choice.desc}</span>
+                    <span className="choice-desc">
+                      <ChoiceDesc desc={choice.desc} />
+                    </span>
                   </span>
                 </button>
               ))}
@@ -231,7 +265,7 @@ export function ReadinessPage() {
                   type="button"
                   onClick={() => selectPlatform(choice.value)}
                 >
-                  <i>{choice.icon}</i>
+                  <PlatformIcon logo={choice.logo} icon={choice.icon} label={choice.label} />
                   {choice.label}
                 </button>
               ))}

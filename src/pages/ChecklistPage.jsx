@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useAppState } from '../context/AppStateContext'
 import { activeChecklistConfig, registrationApplicationImageMarkup } from '../features/checklist/checklistConfig'
 import { SequentialProcedure } from '../features/checklist/SequentialProcedure'
+import { GuideNoteBox, GuideSubAccordion } from '../features/checklist/GuideAccordion'
 
 function GuideImage({ markup }) {
   if (markup.placeholder) return <>{markup.placeholder}</>
@@ -74,6 +75,8 @@ export function ChecklistPage() {
               <strong>&quot;525105 해외직구대행업&quot;</strong>을 선택하시면 됩니다.
             </div>
           )}
+          {step.criteriaGuide && <GuideSubAccordion criteriaGuide={step.criteriaGuide} />}
+          {step.note && <GuideNoteBox note={step.note} />}
         </div>
       )
     } else {
